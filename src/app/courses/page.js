@@ -25,14 +25,18 @@ const COURSES = [
 ];
 
 export default function CoursesPage() {
-  const user = JSON.parse(localStorage.getItem("registeredUser"));
   const router = useRouter();
 
+  const [user, setUser] = useState(null);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [hydrated, setHydrated] = useState(false); // 🔑 KEY FIX
 
   /* ✅ Load ONCE from localStorage */
   useEffect(() => {
+    const registeredUser = localStorage.getItem("registeredUser");
+    if (registeredUser) {
+      setUser(JSON.parse(registeredUser));
+    }
     const saved = localStorage.getItem("selectedCourses");
     if (saved) {
       setSelectedCourses(JSON.parse(saved));
@@ -70,7 +74,7 @@ export default function CoursesPage() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
           <h1 className="text-3xl font-bold">
-            Hi, {user.name} 👋 <br />
+            Hi, {user?.name || "Learner"} 👋 <br />
             <span className="text-blue-600">
               Choose the courses you want to learn
             </span>
