@@ -35,8 +35,8 @@ export default function Home() {
           <div className="mt-6 flex flex-row items-center gap-4">
             <button
               className="
-      bg-blue-600 text-white
-      h-9 px-4 text-sm
+        bg-blue-600 text-white
+      h-12 px-6 text-[15px]
       rounded-md shadow-sm
       transition
       w-fit
@@ -52,7 +52,7 @@ export default function Home() {
             <button
               className="
       border
-      h-9 px-4 text-sm
+      h-12 px-6 text-[15px]
       rounded-md
       transition
       w-fit

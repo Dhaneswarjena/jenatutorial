@@ -25,7 +25,7 @@ const COURSE_LINKS = {
     en: "https://www.youtube.com/watch?v=pYaamz6AyvU&list=PL0Zuz27SZ-6M8znNpim8dRiICRrP5HPft",
     hi: "https://www.youtube.com/watch?v=AGbrsuWcwiE&list=PL8p2I9GklV471sLqkGuf0eKAu9sVNmKFV",
   },
-  Javascript: {
+  JavaScript: {
     en: "https://www.youtube.com/watch?v=jSeI6OfifCI&list=PLU83Ru7iGtAtTlQ8MRGHCBu4tzATiRfmY",
     hi: "https://www.youtube.com/watch?v=ER9SspLe4Hg&list=PLu0W_9lII9ahR1blWXxgSlL4y9iQBnLpR",
   },
@@ -65,7 +65,7 @@ const COURSE_LINKS = {
     en: "https://www.youtube.com/watch?v=YLpCPo0FDtE&list=PL9ooVrP1hQOGTHk2auXsk3cyqRBbbsQ6l",
     hi: "https://www.youtube.com/watch?v=HVjjoMvutj4",
   },
-  Accessbility: {
+  Accessibility: {
     en: "https://www.youtube.com/watch?v=UaRAXFT_rwk",
     hi: "https://www.youtube.com/watch?v=UaRAXFT_rwk",
   },
@@ -142,7 +142,7 @@ export default function StartLearningPage() {
 
                   {/* Card Body */}
                   <div className="p-4">
-                    <p className="font-semibold mb-3">{course}</p>
+                    {/* <p className="font-semibold mb-3">{course}</p> */}
 
                     {/* 🌐 Language Buttons (Conditional) */}
                     {NO_LANGUAGE_COURSES.has(course) ? (
@@ -157,8 +157,18 @@ export default function StartLearningPage() {
                     ) : (
                       links && (
                         <div className="flex gap-3 mb-4">
-                          <a href={links.en}>English</a>
-                          <a href={links.hi}>Hindi</a>
+                          <a
+                            href={links.en}
+                            className="flex-1 text-center bg-blue-600 text-white py-2 rounded-lg text-sm hover:bg-blue-700 transition"
+                          >
+                            English
+                          </a>
+                          <a
+                            href={links.hi}
+                            className="flex-1 text-center bg-orange-500 text-white py-2 rounded-lg text-sm hover:bg-orange-600 transition"
+                          >
+                            Hindi
+                          </a>
                         </div>
                       )
                     )}
