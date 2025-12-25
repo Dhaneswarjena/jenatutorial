@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import RouteLoader from "@/components/RouteLoader";
-
 // Commented out due to Google Fonts connection issues in production builds
 // import { Geist, Geist_Mono } from "next/font/google";
 // const geistSans = Geist({

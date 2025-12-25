@@ -53,7 +53,12 @@ export default function Login() {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-
+          <p
+            className="text-right text-sm text-blue-600 cursor-pointer hover:underline mb-6"
+            onClick={() => router.push("/forgot-password")}
+          >
+            Forgot password?
+          </p>
           <button className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:scale-[1.02] transition">
             Login
           </button>

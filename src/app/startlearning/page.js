@@ -3,11 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import LikeCommentSection from "@/components/LikeCommentSection";
 
-/**
- * Map each course to its English & Hindi links
- * (Replace URLs with your real links)
- */
 const COURSE_LINKS = {
   "HTML / HTML5": {
     en: "https://www.youtube.com/watch?v=kUMe1FH4CHE",
@@ -126,60 +123,72 @@ export default function StartLearningPage() {
         {courses.length === 0 ? (
           <p className="text-gray-500">No courses selected yet.</p>
         ) : (
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {courses.map((course) => {
-              const links = COURSE_LINKS[course];
+          <div className="grid lg:grid-cols-3 gap-10">
+            {/* 🔵 LEFT SIDE — COURSE CONTENT */}
+            <div className="lg:col-span-2">
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {courses.map((course) => {
+                  const links = COURSE_LINKS[course];
 
-              return (
-                <div
-                  key={course}
-                  className="rounded-2xl border shadow hover:shadow-lg transition"
-                >
-                  {/* Card Header */}
-                  <div className="h-40 bg-gradient-to-br from-blue-500 to-purple-600 rounded-t-2xl flex items-center justify-center text-white text-lg font-bold text-center px-3">
-                    {course}
-                  </div>
+                  return (
+                    <div
+                      key={course}
+                      className="rounded-2xl border shadow hover:shadow-lg transition"
+                    >
+                      {/* Card Header */}
+                      <div className="h-40 bg-gradient-to-br from-blue-500 to-purple-600 rounded-t-2xl flex items-center justify-center text-white text-lg font-bold text-center px-3">
+                        {course}
+                      </div>
 
-                  {/* Card Body */}
-                  <div className="p-4">
-                    {/* <p className="font-semibold mb-3">{course}</p> */}
-
-                    {/* 🌐 Language Buttons (Conditional) */}
-                    {NO_LANGUAGE_COURSES.has(course) ? (
-                      <a
-                        href={SPECIAL_COURSE_LINKS[course]?.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full text-center bg-purple-600 text-white py-2 rounded-lg text-sm hover:bg-purple-700 transition mb-4"
-                      >
-                        {SPECIAL_COURSE_LINKS[course]?.label}
-                      </a>
-                    ) : (
-                      links && (
-                        <div className="flex gap-3 mb-4">
+                      {/* Card Body */}
+                      <div className="p-4">
+                        {/* 🌐 Language / Special Buttons */}
+                        {NO_LANGUAGE_COURSES.has(course) ? (
                           <a
-                            href={links.en}
-                            className="flex-1 text-center bg-blue-600 text-white py-2 rounded-lg text-sm hover:bg-blue-700 transition"
+                            href={SPECIAL_COURSE_LINKS[course]?.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full text-center bg-purple-600 text-white py-2 rounded-lg text-sm hover:bg-purple-700 transition mb-4"
                           >
-                            English
+                            {SPECIAL_COURSE_LINKS[course]?.label}
                           </a>
-                          <a
-                            href={links.hi}
-                            className="flex-1 text-center bg-orange-500 text-white py-2 rounded-lg text-sm hover:bg-orange-600 transition"
-                          >
-                            Hindi
-                          </a>
-                        </div>
-                      )
-                    )}
+                        ) : (
+                          links && (
+                            <div className="flex gap-3 mb-4">
+                              <a
+                                href={links.en}
+                                className="flex-1 text-center bg-blue-600 text-white py-2 rounded-lg text-sm hover:bg-blue-700 transition"
+                              >
+                                English
+                              </a>
+                              <a
+                                href={links.hi}
+                                className="flex-1 text-center bg-orange-500 text-white py-2 rounded-lg text-sm hover:bg-orange-600 transition"
+                              >
+                                Hindi
+                              </a>
+                            </div>
+                          )
+                        )}
 
-                    <span className="inline-block text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">
-                      🎓 Certificate Available
-                    </span>
-                  </div>
+                        <span className="inline-block text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                          🎓 Certificate Available
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 🟣 RIGHT SIDE — LIKE & COMMENT */}
+            <aside className="lg:col-span-1 lg:max-w-[360px]">
+              <div className="sticky top-24">
+                <div className="bg-white/80 backdrop-blur border border-slate-200 rounded-2xl p-5 shadow-md">
+                  <LikeCommentSection pageId="start-learning" />
                 </div>
-              );
-            })}
+              </div>
+            </aside>
           </div>
         )}
       </section>

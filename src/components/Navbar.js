@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { LogOut, User, Menu, X } from "lucide-react";
-
+import { Sun, Moon } from "lucide-react";
 export default function Navbar() {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
